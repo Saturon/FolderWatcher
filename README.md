@@ -1,5 +1,6 @@
 To start folderwatcher
 Example: python FolderWatcher -test D:\Games D:\Games\Folder1\Folder2 D:\Games\sadfasdfgadrewrgv
+
 In this example we start watch over 3 folders. But you can start it for single if you want. 
 
 If you want you can start c++ app only: 
