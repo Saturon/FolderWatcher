@@ -7,10 +7,10 @@ src_files = files([
   'Folderwatcher.cpp',
 ])
 
-#dep_poco = dependency('poco', static: true)
+dep_poco = dependency('poco', static: true)
 
 deps_internal = []
-deps_external = []
+deps_external = [dep_poco]
 
 cxxflags_common = []
 LDFlags = []

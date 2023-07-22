@@ -19,7 +19,8 @@ def handler(signum, frame):
 	exit(1)
 
 def FLWS(str1) -> subprocess:
-	result = subprocess.Popen([os.getcwd() + "/FolderWatcher/x64/Debug/Folderwatcher.exe", str1], close_fds=True, text=True)
+	print(os.getcwd())
+	result = subprocess.Popen([os.getcwd() + "/FolderWatcher/FolderWatcher.exe", str1], close_fds=True, text=True)
 	while True:
 		with Listener(on_press=on_press) as listener:
 			listener.join()

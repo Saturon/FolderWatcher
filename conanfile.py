@@ -25,12 +25,13 @@ class FolderWatcher(ConanFile):
     }
 
     def requirements(self):
-        self.requires('poco/1.12.4')
+        self.requires('poco/1.9.4') #Poco version 1.9.4 becose problem with build libmysqlclient/8.0.31 
 
     def build(self):
         meson = Meson(self, backend=None, build_type=None)
         meson.configure(build_folder="build",source_folder="FolderWatcher")
         meson.build()
 
-    #def package_info(self):
-    #    self.cpp_info.libs = tools.collect_libs(self)
+    def package(self):
+        self.copy("F*.exe", "FolderWatcher", "build/FolderWatcher")
+        self.copy("*.py", "FolderWatcher", "FolderWatcher/FolderWatcher")
