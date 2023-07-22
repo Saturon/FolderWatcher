@@ -2,44 +2,44 @@
 #include <string>
 #include <Poco/Delegate.h>
 #include <Poco/DirectoryWatcher.h>
-#include <Poco/DateTime.h>
+#include <Poco/LocalDateTime.h>
 #include <csignal>
 
-Poco::DateTime* timevar;
+Poco::LocalDateTime* timevar;
 Poco::DirectoryWatcher* watcher;
 
-void onItemAdded(const Poco::DirectoryWatcher::DirectoryEvent& event)
+void onItemAddedF(const Poco::DirectoryWatcher::DirectoryEvent& event)
 {
-	timevar = new Poco::DateTime();
-	std::cout << "[" << timevar->year() << timevar->month() << timevar->day() << " " << timevar->hour() << ":" << timevar->minute() << ":" << timevar->second() << "]"
+	timevar = new Poco::LocalDateTime();
+	std::cout << "[" << timevar->day() << ":" << timevar->month() << ":" << timevar->year() << " " << timevar->hour() << ":" << timevar->minute() << ":" << timevar->second() << "]"
 		<< " Added: " + event.item.path() << std::endl;
 }
 
-void onItemModified(const Poco::DirectoryWatcher::DirectoryEvent& event)
+void onItemModifiedF(const Poco::DirectoryWatcher::DirectoryEvent& event)
 {
-	timevar = new Poco::DateTime();
-	std::cout << "[" << timevar->year() << timevar->month() << timevar->day() << " " << timevar->hour() << ":" << timevar->minute() << ":" << timevar->second() << "]"
+	timevar = new Poco::LocalDateTime();
+	std::cout << "[" << timevar->day() << ":" << timevar->month() << ":" << timevar->year() << " " << timevar->hour() << ":" << timevar->minute() << ":" << timevar->second() << "]"
 		<< " Modified: " + event.item.path() << std::endl;
 }
 
-void onItemMovedFrom(const Poco::DirectoryWatcher::DirectoryEvent& event)
+void onItemMovedFromF(const Poco::DirectoryWatcher::DirectoryEvent& event)
 {
-	timevar = new Poco::DateTime();
-	std::cout << "[" << timevar->year() << timevar->month() << timevar->day() << " " << timevar->hour() << ":" << timevar->minute() << ":" << timevar->second() << "]"
+	timevar = new Poco::LocalDateTime();
+	std::cout << "[" << timevar->day() << ":" << timevar->month() << ":" << timevar->year() << " " << timevar->hour() << ":" << timevar->minute() << ":" << timevar->second() << "]"
 		<< " MovedFrom: " + event.item.path() << std::endl;
 }
 
-void onItemMovetimevaro(const Poco::DirectoryWatcher::DirectoryEvent& event)
+void onItemMovedToF(const Poco::DirectoryWatcher::DirectoryEvent& event)
 {
-	timevar = new Poco::DateTime();
-	std::cout << "[" << timevar->year() << timevar->month() << timevar->day() << " " << timevar->hour() << ":" << timevar->minute() << ":" << timevar->second() << "]"
+	timevar = new Poco::LocalDateTime();
+	std::cout << "[" << timevar->day() << ":" << timevar->month() << ":" << timevar->year() << " " << timevar->hour() << ":" << timevar->minute() << ":" << timevar->second() << "]"
 		<< " Movetimevaro: " + event.item.path() << std::endl;
 }
 
-void onItemRemoved(const Poco::DirectoryWatcher::DirectoryEvent& event)
+void onItemRemovedF(const Poco::DirectoryWatcher::DirectoryEvent& event)
 {
-	timevar = new Poco::DateTime();
-	std::cout << "[" << timevar->year() << timevar->month() << timevar->day() << " " << timevar->hour() << ":" << timevar->minute() << ":" << timevar->second() << "]"
+	timevar = new Poco::LocalDateTime();
+	std::cout << "[" << timevar->day() << ":" << timevar->month() << ":" << timevar->year() << " " << timevar->hour() << ":" << timevar->minute() << ":" << timevar->second() << "]"
 		<< " Removed: " + event.item.path() << std::endl;
 }
 
@@ -47,11 +47,11 @@ void watch(std::string path, int eventMask /*= Poco::DirectoryWatcher::DW_FILTER
 {
 	//std::unique_ptr<Poco::DirectoryWatcher> watcher = std::unique_ptr<Poco::DirectoryWatcher>(new Poco::DirectoryWatcher(path, eventMask, scanInterval));
 	watcher = new Poco::DirectoryWatcher(path, eventMask, scanInterval);
-	watcher->itemAdded += Poco::delegate(&onItemAdded);
-	watcher->itemModified += Poco::delegate(&onItemModified);
-	watcher->itemMovedFrom += Poco::delegate(&onItemMovedFrom);
-	watcher->itemMovedTo += Poco::delegate(&onItemMovetimevaro);
-	watcher->itemRemoved += Poco::delegate(&onItemRemoved);
+	watcher->itemAdded += Poco::delegate(&onItemAddedF);
+	watcher->itemModified += Poco::delegate(&onItemModifiedF);
+	watcher->itemMovedFrom += Poco::delegate(&onItemMovedFromF);
+	watcher->itemMovedTo += Poco::delegate(&onItemMovedToF);
+	watcher->itemRemoved += Poco::delegate(&onItemRemovedF);
 }
 
 void signalHandler(int signum) {
