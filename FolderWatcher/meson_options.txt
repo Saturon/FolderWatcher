@@ -1,0 +1,2 @@
+option('enable-tests', type: 'boolean', value: true, description: 'enable tests')
+option('run-tests', type: 'boolean', value: false, description: 'Use meson as test runner')

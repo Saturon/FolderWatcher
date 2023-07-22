@@ -1,0 +1,18 @@
+[settings]
+os=Windows
+os_build=Windows
+arch=x86_64
+arch_build=x86_64
+compiler=Visual Studio
+compiler.version=17
+build_type=Release
+[options]
+[build_requires]
+[env]
+
+[env]
+VERSION_TYPE=Mobile
+CXX=clang-cl
+CC=clang-cl
+LD=lld-link
+LDFLAGS=/VERBOSE

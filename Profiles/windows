@@ -1,0 +1,17 @@
+[settings]
+os=Windows
+os_build=Windows
+arch=x86_64
+arch_build=x86_64
+compiler=Visual Studio
+compiler.toolset=ClangCL
+compiler.version=17
+compiler.cppstd=17
+build_type=Release
+
+[env]
+VERSION_TYPE=Mobile
+CXX=clang-cl
+CC=clang-cl
+LD=lld-link
+LDFLAGS=/VERBOSE /LIBPATH:"C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\Llvm\x64\lib\clang\15.0.1\lib\windows\"

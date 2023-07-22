@@ -1,0 +1,32 @@
+{% set clang_version = "15" %}
+{% set clang_version_full = "15.0.5" %}
+{% set target_triplet = "x86_64-linux-gnu" %}
+{% set libcxx_dir = "/usr/lib/llvm-" ~ clang_version %}
+{% set toolchain_config_extra = "-{}".format(os.getenv('TOOLCHAIN_CONFIG_EXTRA')) %}
+{% set toolchain_config_extra = "" if toolchain_config_extra == "-None" else toolchain_config_extra %}
+
+[settings]
+os=Linux
+os_build=Linux
+arch=x86_64
+arch_build=x86_64
+compiler=clang
+compiler.version={{clang_version}}
+compiler.libcxx=libc++
+compiler.cppstd=17
+compiler.toolchain_config_id=linux{{toolchain_config_extra}}
+build_type=Release
+
+[env]
+VERSION_TYPE=Linux
+CHOST={{target_triplet}}
+CC=clang-{{clang_version}}
+CXX=clang++-{{clang_version}}
+AR=llvm-ar-{{clang_version}}
+AS=llvm-as-{{clang_version}}
+NM=llvm-nm-{{clang_version}}
+LD=ld.lld-{{clang_version}}
+OBJCOPY=llvm-objcopy-{{clang_version}}
+OBJDUMP=llvm-objdump-{{clang_version}}
+RANLIB=llvm-ranlib-{{clang_version}}
+STRIP=llvm-strip-{{clang_version}}
