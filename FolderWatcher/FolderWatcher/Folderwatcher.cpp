@@ -57,7 +57,7 @@ void watch(std::string path, int eventMask /*= Poco::DirectoryWatcher::DW_FILTER
 void signalHandler(int signum) {
 	std::cout << "Interrupt signal (" << signum << ") received.\n";
 
-	if (signum == 6) or (signum == 2) {
+	if ((signum == 6) || (signum == 2)) {
 		delete watcher;
 	}
 

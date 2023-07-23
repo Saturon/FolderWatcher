@@ -23,6 +23,7 @@ def FLWS(str1, tests, itest) -> subprocess:
 
 	if tests:
 		print('Tests will start')
+		time.sleep(1)
 		os.mkdir(str1+"/testfolder" + str(itest)) # Test folder with path number
 		time.sleep(1)
 		os.rmdir(str1+"/testfolder" + str(itest))
