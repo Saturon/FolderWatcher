@@ -57,7 +57,7 @@ void watch(std::string path, int eventMask /*= Poco::DirectoryWatcher::DW_FILTER
 void signalHandler(int signum) {
 	std::cout << "Interrupt signal (" << signum << ") received.\n";
 
-	if (signum == 6) {
+	if (signum == 6) or (signum == 2) {
 		delete watcher;
 	}
 
@@ -67,6 +67,7 @@ void signalHandler(int signum) {
 int main(int argc, char* argv[])
 {
 	std::cout << "Folder Watcher\n";
+	signal(SIGINT, signalHandler);
 	
 	if (argc < 2) {
 		std::cout << "Please add a directory as a command line parameter\n";
@@ -90,7 +91,8 @@ int main(int argc, char* argv[])
 
 		}
 	}
-	/*watch("D:/Games", Poco::DirectoryWatcher::DW_FILTER_ENABLE_ALL, Poco::DirectoryWatcher::DW_DEFAULT_SCAN_INTERVAL);
+	/*
+	watch("D:/Games", Poco::DirectoryWatcher::DW_FILTER_ENABLE_ALL, Poco::DirectoryWatcher::DW_DEFAULT_SCAN_INTERVAL);
 	while (true)
 	{
 		std::cout << "Waiting for event...\n";

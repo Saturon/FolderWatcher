@@ -7,6 +7,5 @@ If you want you can start c++ app only:
 Folderwatcher.exe D:\Games
 
 Known problems:
-1) Ctrl+C will memory leak and leave test folders in place
-2) Starting watch over parent/child folder will cause log of D:\Games\Folder1 to be unreadable  (Example: D:\Games and D:\Games\Folder1)
+1) Starting watch over parent/child folder will cause log of D:\Games\Folder1 to be unreadable  (Example: D:\Games and D:\Games\Folder1)
 3) Cant build libmysqlclient/8.0.31. Started using Poco 1.9.4
